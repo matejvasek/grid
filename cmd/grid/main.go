@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"strconv"
 	"strings"
+	"syscall"
 
 	"github.com/boson-project/grid"
 	"github.com/boson-project/grid/brasilia"
@@ -46,7 +47,7 @@ func printCfg() {
 
 func main() {
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, usage)
+		fmt.Fprintln(os.Stderr, usage)
 		flag.PrintDefaults()
 	}
 	parseEnv()
@@ -78,7 +79,7 @@ func run() (err error) {
 	)
 
 	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt, os.Kill)
+	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
 	ctx, cancel := context.WithCancel(context.Background())
 
 	go func() {
