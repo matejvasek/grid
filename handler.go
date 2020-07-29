@@ -45,13 +45,22 @@ func (g *Grid) handleEvents(w http.ResponseWriter, r *http.Request) {
 		}
 	case "POST":
 		w.WriteHeader(http.StatusNotImplemented)
-		_ = json.NewEncoder(w).Encode("Creation of events not implemented.")
+		err = json.NewEncoder(w).Encode("Creation of events not implemented.")
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err.Error())
+		}
 	case "DELETE":
 		w.WriteHeader(http.StatusNotImplemented)
-		_ = json.NewEncoder(w).Encode("Deleteion of events not implemented.")
+		err = json.NewEncoder(w).Encode("Deleteion of events not implemented.")
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err.Error())
+		}
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
-		_ = json.NewEncoder(w).Encode("Method not supported.")
+		err = json.NewEncoder(w).Encode("Method not supported.")
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err.Error())
+		}
 	}
 }
 
@@ -75,12 +84,21 @@ func (g *Grid) handleSubscriptions(w http.ResponseWriter, r *http.Request) {
 		}
 	case "POST":
 		w.WriteHeader(http.StatusNotImplemented)
-		_ = json.NewEncoder(w).Encode("Creation of subscriptions not implemented.")
+		err = json.NewEncoder(w).Encode("Creation of subscriptions not implemented.")
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err.Error())
+		}
 	case "DELETE":
 		w.WriteHeader(http.StatusNotImplemented)
-		_ = json.NewEncoder(w).Encode("Deleteion of subscriptions not implemented.")
+		err = json.NewEncoder(w).Encode("Deleteion of subscriptions not implemented.")
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err.Error())
+		}
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
-		_ = json.NewEncoder(w).Encode("Method not supported.")
+		err = json.NewEncoder(w).Encode("Method not supported.")
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err.Error())
+		}
 	}
 }
